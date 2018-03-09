@@ -9,6 +9,7 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { StarComponent } from './shared/star.component';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { ProductGuardService } from './products/product-guard.service';
 
 @NgModule({ //decorator that defines the metadata for this module
   declarations: [ //defines the components that belong to this module
@@ -25,13 +26,15 @@ import { WelcomeComponent } from './home/welcome.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'products/:id', 
+        canActivate: [ ProductGuardService ],
+        component: ProductDetailComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full'}, //when the app loads, default to welcome
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ])
   ],
-  providers: [],
+  providers: [ProductGuardService],
   bootstrap: [AppComponent] //defines the startup component of the application, which is our AppComponent
 })
 export class AppModule { } //defines this module using a class
