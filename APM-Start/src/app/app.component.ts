@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ProductService } from './products/product.service';
 
 @Component( {
   selector: 'pm-root', //pm for product management. selector is the name of the component when we use it as a directive in HTML. Template defines the HTML that we want to display.
@@ -18,8 +17,7 @@ import { ProductService } from './products/product.service';
         <router-outlet></router-outlet>
       </div>
     </div>
-    `,
-  providers: [ ProductService ]
+    `
 })
 
 export class AppComponent {
